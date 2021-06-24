@@ -38,7 +38,7 @@ app.use('/users', userRoutes);
 // app.use('/barang', barangRoutes);
 // app.use('/peminjaman', peminjamanRoutes);
 // app.use('/kegiatan', kegiatanRoutes);
-// app.use('/uoms', uomRoutes);
+app.use('/uoms', uomRoutes);
 app.use('/cabang', cabangRoutes);
 
 app.use((req, res, next) => {

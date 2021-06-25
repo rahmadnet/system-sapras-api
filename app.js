@@ -34,10 +34,10 @@ app.use((req,res,next) =>{
 // Routes which should handle request
 
 app.use('/users', userRoutes);
-// app.use('/categorys', categoryRoutes);
-// app.use('/barang', barangRoutes);
-// app.use('/peminjaman', peminjamanRoutes);
-// app.use('/kegiatan', kegiatanRoutes);
+app.use('/categorys', categoryRoutes);
+app.use('/barang', barangRoutes);
+app.use('/peminjaman', peminjamanRoutes);
+app.use('/kegiatan', kegiatanRoutes);
 app.use('/uoms', uomRoutes);
 app.use('/cabang', cabangRoutes);
 

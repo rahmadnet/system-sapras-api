@@ -11,15 +11,6 @@ const peminjamanSchema = mongoose.Schema({
         ref: 'User',
         require: true
     },
-    cabang: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Cabang',
-        require: true
-    },
-    status: {
-        type: String,
-        required: true
-    },
     date_pinjam: {
         type: Date,
         require: true,

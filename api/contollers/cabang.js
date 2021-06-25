@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 
 // membuat cabang baru
 exports.cabang_create_cabang = (req, res, next) => {
-    console.log(req.file);
     const cabang = new Cabang({
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
@@ -34,7 +33,7 @@ exports.cabang_create_cabang = (req, res, next) => {
 
 // menampilkan seluruh cabang
 exports.cabang_get_all = (req,res,next) => {
-    Cabang.find().select('id name desc').exec().then(docs => {
+    Cabang.find().select('_id name desc').exec().then(docs => {
         const response = {
             count: docs.length,
             cabang: docs.map(doc => {
@@ -85,4 +84,63 @@ exports.cabang_get_cabang = (req,res,next) => {
             error: err
         });
     });
+};
+
+// update cabang berdasarkan ID
+exports.cabang_update_cabang = (req, res, next) => {
+    const id = req.params.cabangId;
+    const updateOps = {};
+    for (const ops of req.body) {
+        updateOps[ops.propName] = ops.value;
+    }
+    Cabang.update({
+            _id: id
+        }, {
+            $set: updateOps
+        })
+        .exec()
+        .then(result => {
+            res.status(200).json({
+                message: 'Cabang Updated',
+                request: {
+                    type: 'GET',
+                    url: 'http://localhost:3000/cabang/' + id
+                }
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+};
+
+// delete cabang berdasarkan ID
+exports.cabang_delete_cabang = (req, res, next) => {
+    const id = req.params.cabangId;
+    Uom.remove({
+            _id: id
+        })
+        .exec()
+        .then(result => {
+            res.status(200).json({
+                message: 'Cabang deleted',
+                request: {
+
+                    type: 'DELETE',
+                    url: 'http://localhost:3000/cabang/' + id,
+                    body: {
+                        name: 'String',
+                        desc: 'String'
+                    }
+                }
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
 };

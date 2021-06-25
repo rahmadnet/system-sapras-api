@@ -11,13 +11,13 @@ const barangSchema = mongoose.Schema({
     },
     status: {
         type: String,
-        require: true
+        require: false
     },
     quantity: {
         type: Number,
         require: true
     },
-    photo: {
+    barangImage: {
         type: String,
         require: true
     },

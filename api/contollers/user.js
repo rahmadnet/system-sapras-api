@@ -5,6 +5,7 @@ require("dotenv").config();
 const Cabang = require('../routes/models/cabang')
 const User = require('../routes/models/user');
 
+// menampilkan seluruh user
 exports.user_get_all = (req, res, next) =>{
     User.find().select('id name no_wa email cabang')
     .populate('cabang')
@@ -34,6 +35,7 @@ exports.user_get_all = (req, res, next) =>{
     });
 }
 
+// signup user baru
 exports.user_signup = (req, res, next) => {
     User.find({
             email: req.body.email
@@ -77,6 +79,7 @@ exports.user_signup = (req, res, next) => {
         })
 };
 
+// login user
 exports.user_login = (req, res, next) => {
     User.find({
             email: req.body.email
@@ -116,6 +119,7 @@ exports.user_login = (req, res, next) => {
         });
 };
 
+// delete user
 exports.user_delete = (req, res, next) => {
     User.remove({
             _id: req.params.userId

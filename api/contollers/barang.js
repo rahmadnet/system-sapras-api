@@ -33,7 +33,7 @@ exports.barang_get_all = (req, res, next) => {
 }
 
 // membuat barang baru
-exports.barang_create_barang = (req, res, next) => {
+exports.barang_create_barang = (req, res, next) => { 
     console.log(req.file);
     const barang = new Barang({
         _id: new mongoose.Types.ObjectId(),
